@@ -1,0 +1,7 @@
+.idea
+yarn.lock
+db.sqlite3
+build
+node_modules
+env
+
