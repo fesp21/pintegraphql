@@ -5,6 +5,7 @@ inside the server folder, make a virtual envioronment
 ```python -m venv env```
 
 ```source env/bin/activate```
+
 ```pip install -r requirements.txt```
 
 install grapiql to debug and query easily
