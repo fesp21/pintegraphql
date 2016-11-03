@@ -24,6 +24,7 @@ class ImageNode(DjangoObjectType):
         interfaces = (relay.Node, )
 
 
+
 class Query(AbstractType):
     user = relay.Node.Field(UserNode)
     all_users = DjangoFilterConnectionField(UserNode)
