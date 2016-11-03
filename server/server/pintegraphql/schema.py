@@ -1,6 +1,6 @@
 from graphene import relay, AbstractType
 from graphene_django import DjangoObjectType
-from graphene_django.filter import DjangoFilterConnectionField
+from graphene_django.filter import DjangoFilterConnectionField, GrapheneFilterSet
 
 from server.pintegraphql.models import User, Image
 
