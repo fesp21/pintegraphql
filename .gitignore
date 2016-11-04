@@ -6,4 +6,7 @@ db.sqlite3
 build
 node_modules
 env
-
+coverage
+.DS_Store
+.env
+npm-debug.log

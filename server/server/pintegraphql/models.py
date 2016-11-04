@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 class User(models.Model):
-    profile = models.CharField(max_length=64)
     nickname = models.CharField(max_length=64)
     photo = models.URLField(max_length=256)
 
@@ -20,4 +19,10 @@ class Image(models.Model):
     url = models.URLField(max_length=256)
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="images")
     description = models.TextField()
-    likedBy = models.ManyToManyField(User, related_name="likedImages")
+    liked_by = models.ManyToManyField(User, related_name="liked_images")
+
+
+class Profile(models.Model):
+    user = models.ForeignKey(User)
+    oauth_token = models.CharField(max_length=200)
+    oauth_secret = models.CharField(max_length=200)
