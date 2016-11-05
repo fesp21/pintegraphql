@@ -10,6 +10,8 @@
     {% if user.is_authenticated %}
       You are signed in as <strong>{{ user.username }}</strong> /
       <a href="{% url 'home' %}">home</a> /
+      <a href="{% url 'redirect_to_spa' %}">SPA</a> /
+      <a href="{% url 'graphql' %}">GraphQL</a> /
       <a href="{% url 'logout' %}">logout</a>
     {% else %}
       <a href="{% url 'login' %}">login</a> /

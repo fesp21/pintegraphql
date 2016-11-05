@@ -1,28 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-# Create your models here.
-class User(models.Model):
-    nickname = models.CharField(max_length=64)
-    photo = models.URLField(max_length=256)
-
-    def toDictionary(self):
-        return {
-            'id': self.id,
-            'nickname': self.nickname,
-            'photo_url': self.photo,
-            'images': [image.id for image in self.images.all()]
-        }
+# inherits from base django User, social-login uses
+# username, email, is_authenticated, is_active from the base class
+class User(User):
+    profile_picture = models.URLField(max_length=256, null=True)
 
 
 class Image(models.Model):
-    url = models.URLField(max_length=256)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="images")
+    url = models.URLField(max_length=256, unique=True)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="uploaded_images")
     description = models.TextField()
     liked_by = models.ManyToManyField(User, related_name="liked_images")
-
-
-class Profile(models.Model):
-    user = models.ForeignKey(User)
-    oauth_token = models.CharField(max_length=200)
-    oauth_secret = models.CharField(max_length=200)
