@@ -12,5 +12,4 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
-    url(r'', core_views.redirect_to_spa, name='redirect_to_spa'),
 ]

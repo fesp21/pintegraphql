@@ -1,8 +1,8 @@
 import graphene
 from graphene import relay, AbstractType
 from graphene_django import DjangoObjectType
-from graphene_django.filter import DjangoFilterConnectionField, GrapheneFilterSet
-
+from graphene_django.filter import DjangoFilterConnectionField
+from django.db import IntegrityError
 from server.pintegraphql.models import User, Image
 
 
@@ -45,15 +45,13 @@ class UploadImage(relay.ClientIDMutation):
         user = context.user
         image_url = input.get('url')
         image_description = input.get('description')
-        try:
-            image = Image(url=image_url, description=image_description)
-        except Image.DoesNotExist:
-            return
-        else:
-            if user.is_authenticated():
-                image.user.add(user.user)
+        image = Image(url=image_url, user=user.user, description=image_description)
+        if user.is_authenticated():
+            try:
                 image.save()
-            return UploadImage(image=image)
+            except IntegrityError as err:
+                return Exception('Image already exists: ${}'.format(err))
+        return UploadImage(image=image)
 
 
 class LikeImage(relay.ClientIDMutation):
@@ -68,10 +66,13 @@ class LikeImage(relay.ClientIDMutation):
         image_url = input.get('url')
         try:
             image = Image.objects.get(url=image_url)
-        except Image.DoesNotExist:
-            return
+        except Image.DoesNotExist as err:
+            return Exception('Could not find any image with that URL, ${}'.format(err))
         else:
             if user.is_authenticated():
-                image.liked_by.add(user.user)
+                if user.user not in image.liked_by.all():
+                    image.liked_by.add(user.user)
+                else:
+                    image.liked_by.remove(user.user)
                 image.save()
             return UploadImage(image=image)
