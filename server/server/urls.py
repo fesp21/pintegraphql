@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
+    url(r'oauth/facebook/callback/', core_views.facebook, name='facebook'),
 ]
