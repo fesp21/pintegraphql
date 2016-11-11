@@ -1,16 +1,35 @@
 import React from 'react'
-import './MainLayout.css'
+import { connect } from 'react-redux'
 
-function CoreLayout ({ children }) {
+import './MainLayout.css'
+import TopBar from '../components/TopBar/TopBar'
+import Counter from '../components/Counter/Counter'
+import mainActions from '../actions/mainActions'
+
+const mapStateToProps = (state) => ({
+    counter : state.mainReducer.counter
+})
+
+
+function MainLayout ({ children, counter, increaseCounter, decreaseCounter }) {
   return (
     <div className='pageContainer'>
-      {children}
+      <TopBar
+        title="Boilerplate SPA"
+        github="https://github.com/marcosfede/react-spa-boilerplate"
+      />
+      <div className="viewContainer">
+        {children}
+      </div>
+        <Counter counter={counter}
+          increaseCounter={increaseCounter} 
+          decreaseCounter={decreaseCounter}/>
     </div>
   )
 }
 
-CoreLayout.propTypes = {
+MainLayout.propTypes = {
   children: React.PropTypes.element
 }
 
-export default CoreLayout
+export default connect(mapStateToProps, mainActions)(MainLayout)

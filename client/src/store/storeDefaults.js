@@ -1,6 +1,7 @@
 const storeDefaults = {
-    homeReducer : 0,
-    aboutReducer : 0
-};
+    mainReducer : {
+        counter : 0
+    }
+}
 
-export default storeDefaults;
+export default storeDefaults

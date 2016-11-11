@@ -7,11 +7,11 @@ import React from 'react'
 // your current file is.
 import MainLayout from '../layouts/MainLayout'
 import HomeView from '../views/HomeView'
-import AboutView from '../views/AboutView'
+import DetailView from '../views/DetailView'
 
 export default (
   <Route path='/' component={MainLayout}>
     <IndexRoute component={HomeView} />
-    <Route path='about' component={AboutView} />
+    <Route path='detail/:username' component={DetailView} />
   </Route>
 )

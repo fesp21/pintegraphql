@@ -1,8 +1,8 @@
-const aboutReducer = (state = 0, action) => {
+const detailReducer = (state = 0, action) => {
     switch (action.type) {
         default:
             return state;
     }
 }
 
-export default aboutReducer
+export default detailReducer
