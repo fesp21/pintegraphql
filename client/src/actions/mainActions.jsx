@@ -6,7 +6,6 @@ const DECREASE_COUNTER = 'DECREASE_COUNTER'
 const increaseCounter = createAction(INCREASE_COUNTER)
 const decreaseCounter = createAction(DECREASE_COUNTER)
 
-
 export const mainActionConstants = {
     INCREASE_COUNTER,
     DECREASE_COUNTER,

@@ -1,0 +1,40 @@
+{
+    "users":[
+        {
+            "username": "marcosfederic",
+            "profilePicture": "profile picture url",
+            "photos": [
+                {
+                    "imageUrl": "url1",
+                    "imageDescription": "url1 description"
+                },
+                {
+                    "imageUrl": "url2",
+                    "imageDescription": "url2 description"
+                },
+                {
+                    "imageUrl": "url3",
+                    "imageDescription": "url3 description"
+                }
+            ]
+        },
+        {
+            "username": "matias",
+            "profilePicture": "profile picture url",
+            "photos": [
+                {
+                    "imageUrl": "url4",
+                    "imageDescription": "url4 description"
+                },
+                {
+                    "imageUrl": "url5",
+                    "imageDescription": "url5 description"
+                },
+                {
+                    "imageUrl": "url6",
+                    "imageDescription": "url6 description"
+                }
+            ]
+        }
+    ]
+}

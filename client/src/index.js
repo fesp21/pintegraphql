@@ -9,13 +9,11 @@ import storeDefaults from './store/storeDefaults'
 import Root from './containers/Root'
 import routes from './routes/routes'
 
-
 const store = configureStore(storeDefaults)
-injectTapEventPlugin();
+injectTapEventPlugin()
 const history = syncHistoryWithStore(browserHistory, store)
-
 
 ReactDOM.render(
   <Root store={store} history={history} routes={routes} />,
   document.getElementById('root')
-);
+)

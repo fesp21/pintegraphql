@@ -1,5 +1,7 @@
-#home {
+#card_block {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-flow: wrap;
     align-items: center;
+    justify-content: center;
 }

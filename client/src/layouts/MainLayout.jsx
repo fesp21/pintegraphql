@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import './MainLayout.css'
 import TopBar from '../components/TopBar/TopBar'
-import Counter from '../components/Counter/Counter'
 import mainActions from '../actions/mainActions'
 
 const mapStateToProps = (state) => ({
@@ -15,15 +14,12 @@ function MainLayout ({ children, counter, increaseCounter, decreaseCounter }) {
   return (
     <div className='pageContainer'>
       <TopBar
-        title="Boilerplate SPA"
-        github="https://github.com/marcosfede/react-spa-boilerplate"
+        title="PinteGraphQL"
+        github="https://github.com/marcosfede/pintegraphql"
       />
       <div className="viewContainer">
         {children}
       </div>
-        <Counter counter={counter}
-          increaseCounter={increaseCounter} 
-          decreaseCounter={decreaseCounter}/>
     </div>
   )
 }
