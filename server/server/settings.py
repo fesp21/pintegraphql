@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
     'social.apps.django_app.default',
+    'corsheaders',
 ]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -148,3 +151,4 @@ AUTHENTICATION_BACKENDS = (
 
 
 SOCIAL_AUTH_USER_MODEL = 'pintegraphql.User'
+CORS_ORIGIN_ALLOW_ALL = True

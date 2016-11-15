@@ -7,7 +7,8 @@ from server.pintegraphql import views as core_views
 
 urlpatterns = [
     url(r'^$', core_views.home, name='home'),
-    url(r'^graphql', GraphQLView.as_view(graphiql=True), name='graphql'),
+    url(r'^spa/$', core_views.spa, name='spa'),
+    url(r'^graphql', core_views.MyGraphQLView.as_view(graphiql=True), name='graphql'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
