@@ -7,14 +7,18 @@ from server.pintegraphql.models import User, Image
 
 
 class UserNode(DjangoObjectType):
+
     class Meta:
         model = User
-        filter_fields = ['username', 'profile_picture']
-        only_fields = ('username', 'profile_picture')
+        filter_fields = ['username', 'profile_picture',
+                         'uploaded_images', 'liked_images']
+        only_fields = ('username', 'profile_picture',
+                       'uploaded_images', 'liked_images')
         interfaces = (relay.Node, )
 
 
 class ImageNode(DjangoObjectType):
+
     class Meta:
         model = Image
         filter_fields = {
@@ -34,6 +38,7 @@ class Query(AbstractType):
 
 
 class UploadImage(relay.ClientIDMutation):
+
     class Input:
         url = graphene.String(required=True)
         description = graphene.String()
@@ -45,7 +50,8 @@ class UploadImage(relay.ClientIDMutation):
         user = context.user
         image_url = input.get('url')
         image_description = input.get('description')
-        image = Image(url=image_url, user=user.user, description=image_description)
+        image = Image(url=image_url, user=user.user,
+                      description=image_description)
         if user.is_authenticated():
             try:
                 image.save()
@@ -55,6 +61,7 @@ class UploadImage(relay.ClientIDMutation):
 
 
 class LikeImage(relay.ClientIDMutation):
+
     class Input:
         url = graphene.String(required=True)
 

@@ -152,3 +152,18 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_USER_MODEL = 'pintegraphql.User'
 CORS_ORIGIN_ALLOW_ALL = True
+
+SOCIAL_AUTH_PIPELINE = (
+
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'server.pintegraphql.pipeline.get_avatar', # This is a path of your pipeline.py
+    #and get_avatar is the function.
+)

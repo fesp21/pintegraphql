@@ -49,7 +49,10 @@
   .md-card-media {
     height: 126px;
     width: 224px;
-    
+  }
+  .md-card {
+    height: 300px;
+    width: 250px;
   }
   .md-card-media>img {
     height: inherit;

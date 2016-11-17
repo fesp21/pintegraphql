@@ -10,6 +10,6 @@ class User(User):
 
 class Image(models.Model):
     url = models.URLField(max_length=256, unique=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="uploaded_images")
+    user = models.ForeignKey( User, on_delete=models.PROTECT, related_name="uploaded_images")
     description = models.TextField(null=True, blank=True)
-    liked_by = models.ManyToManyField(User, related_name="liked_images", null=True, blank=True)
+    liked_by = models.ManyToManyField( User, related_name="liked_images", null=True, blank=True)

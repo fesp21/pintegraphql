@@ -1,8 +1,17 @@
 <template>
   <div id="detail">
-    <template v-for="user in userData">
-      <image-card :username="user.username" :imageUrl="user.imageUrl"></image-card>
-    </template>
+    <div id="card-block" class="md-display-3">
+      <template v-for="image in user.node.uploadedImages.edges">
+        <image-card
+        :username="user.node.username"
+        :profilePicture="user.node.profilePicture"
+        :imageUrl="image.node.url"
+        :imageDescription="image.node.description"
+        :likeNumber="image.node.likedBy.edges.length"
+        >
+        </image-card>
+      </template>
+    </div>
     <router-link to="/">
       <md-button class="md-raised">Home View</md-button>
     </router-link>
@@ -14,9 +23,12 @@ import ImageCard from '../components/ImageCard'
 export default {
   name: 'Detail',
   components: {ImageCard},
-  data: () => ({
-    userData: []
-  })
+  props: ['allUsers'],
+  computed: {
+    user () {
+      return this.allUsers.edges.find(el => el.node.username === this.$route.params.username)
+    }
+  }
 }
 </script>
 

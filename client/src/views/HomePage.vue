@@ -1,15 +1,16 @@
 <template>
   <div id="home">
-    <div id="card-block" class="md-display-3">
-      <template v-if="loading === 1">Loading ... </template>
-      <template v-else>
-        <template v-for="image in allImages.edges">
-          <image-card 
-          :username="image.node.user.username" 
-          :imageUrl="image.node.url" 
-          :profilePicture="image.node.user.profilePicture" 
+    <div id="card-block" v-masonry="{columnWith: 200}" class="md-display-3 grid">
+      <template v-for="user in allUsers.edges">
+        <template v-for="image in user.node.uploadedImages.edges">
+          <image-card
+          class="grid-item"
+          :username="user.node.username"
+          :profilePicture="user.node.profilePicture"
+          :imageUrl="image.node.url"
           :imageDescription="image.node.description"
-          :likeNumber="image.node.likedBy.edges.length">
+          :likeNumber="image.node.likedBy.edges.length"
+          >
           </image-card>
         </template>
       </template>
@@ -19,35 +20,22 @@
 
 <script>
 import ImageCard from '../components/ImageCard'
-import imagesQuery from '../api/querys'
-
 export default {
   name: 'Home',
   components: {ImageCard},
-  data: () => ({
-    allImages: [],
-    loading: 0
-  }),
-  apollo: {
-    allImages: {
-      query: imagesQuery,
-      loadingKey: 'loading',
-      update (data) {
-        return data.allImages
-      }
-    }
-  }
+  props: ['allUsers']
 }
 </script>
 
 <style>
+/*
   #home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
+
   #card-block {
     display: flex;
     flex-direction: row;
@@ -55,4 +43,5 @@ export default {
     justify-content: center;
     align-items: center;
   }
+  */
 </style>

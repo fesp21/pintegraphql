@@ -7,12 +7,13 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import apolloClient from './apolloconfig'
 import VueApollo from 'vue-apollo'
+import vueMasonry from './vue-masonry'
 
 Vue.use(VueMaterial)
 Vue.use(VueApollo, {
   apolloClient
 })
-
+Vue.use(vueMasonry)
 Vue.material.theme.register('default', {
   primary: {
     color: 'light-blue',
@@ -21,7 +22,6 @@ Vue.material.theme.register('default', {
   accent: 'blue'
 })
 sync(store, router)
-
 const app = new Vue({
   router,
   store,
