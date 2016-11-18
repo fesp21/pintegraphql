@@ -20,10 +20,17 @@
 
 <script>
 import ImageCard from '../components/ImageCard'
+import {getUserData} from '../vuex/Detail/getters'
+
 export default {
   name: 'Detail',
   components: {ImageCard},
   props: ['allUsers'],
+  vuex: {
+    getters: {
+      userData: getUserData(this.$route.params.username)
+    }
+  },
   computed: {
     user () {
       return this.allUsers.edges.find(el => el.node.username === this.$route.params.username)

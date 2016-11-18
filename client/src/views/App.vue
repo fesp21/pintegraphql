@@ -2,7 +2,7 @@
   <div v-md-theme="'default'" class="app">
     <topbar title="PinteGraphQL" githubLink="https://github.com/marcosfede/pintegraphql"></topbar>
     <template class="page">
-      <router-view :allUsers="allUsers"></router-view>
+      <router-view ></router-view>
     </template>
   </div>
 </template>
@@ -10,18 +10,17 @@
 <script>
 import store from '../vuex/store'
 import Topbar from '../components/Topbar'
-import images from '../vuex/Root/getters'
+import {allImages} from '../vuex/Root/getters'
+import {fetchData} from '../vuex/Root/actions'
 
 export default {
   store,
   components: {Topbar},
   name: 'App',
-  data: () => ({
-    allUsers: []
-  }),
+  created: fetchData
   vuex: {
-    getters: {
-      images: images
+    actions: {
+      fetchData
     }
   }
 }

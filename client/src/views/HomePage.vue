@@ -19,10 +19,17 @@
 
 <script>
 import ImageCard from '../components/ImageCard'
+import {allImages} from '../vuex/Root/getters'
+
 export default {
   name: 'Home',
   components: {ImageCard},
-  props: ['allUsers']
+  props: ['allUsers'],
+  vuex: {
+    getters: {
+      allImages
+    }
+  }
 }
 </script>
 
