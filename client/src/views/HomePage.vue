@@ -1,10 +1,9 @@
 <template>
   <div id="home">
-    <div id="card-block" v-masonry="{columnWith: 200}" class="md-display-3 grid">
+    <div id="card-block" class="md-display-3">
       <template v-for="user in allUsers.edges">
         <template v-for="image in user.node.uploadedImages.edges">
           <image-card
-          class="grid-item"
           :username="user.node.username"
           :profilePicture="user.node.profilePicture"
           :imageUrl="image.node.url"
@@ -28,7 +27,6 @@ export default {
 </script>
 
 <style>
-/*
   #home {
     display: flex;
     flex-direction: column;
@@ -43,5 +41,4 @@ export default {
     justify-content: center;
     align-items: center;
   }
-  */
 </style>

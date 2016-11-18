@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const allImagesQuery = gql`
-query {
+{
   allImages {
     edges {
       node {
@@ -24,7 +24,7 @@ query {
 }
 `
 const allUsersQuery = gql`
-query {
+{
   allUsers {
     edges {
       node {
@@ -33,6 +33,7 @@ query {
         uploadedImages {
           edges {
             node {
+              id
               url
               description
               likedBy {
