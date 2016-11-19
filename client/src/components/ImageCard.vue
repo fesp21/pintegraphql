@@ -1,7 +1,7 @@
 <template>
   <md-card md-with-hover>
     <md-card-header>
-      <router-link :to="`/detail/${username}`">
+      <router-link :to="{name: 'detail', params: {username: username}}">
         <md-avatar>
           <img v-if="profilePicture" :src="profilePicture" alt="thumbnail">
           <img v-else src="http://placehold.it/50x50" alt="thumbnail">
