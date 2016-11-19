@@ -1,13 +1,13 @@
 <template>
   <div id="detail">
     <div id="card-block" class="md-display-3">
-      <template v-for="image in user.node.uploadedImages.edges">
+      <template v-for="image in userData.uploadedImages">
         <image-card
-        :username="user.node.username"
-        :profilePicture="user.node.profilePicture"
-        :imageUrl="image.node.url"
-        :imageDescription="image.node.description"
-        :likeNumber="image.node.likedBy.edges.length"
+        :username="userData.username"
+        :profilePicture="userData.profilePicture"
+        :imageUrl="image.url"
+        :imageDescription="image.description"
+        :likeNumber="image.likedBy.length"
         >
         </image-card>
       </template>
@@ -20,20 +20,16 @@
 
 <script>
 import ImageCard from '../components/ImageCard'
-import {getUserData} from '../vuex/Detail/getters'
 
 export default {
   name: 'Detail',
   components: {ImageCard},
-  props: ['allUsers'],
-  vuex: {
-    getters: {
-      userData: getUserData(this.$route.params.username)
-    }
-  },
   computed: {
-    user () {
-      return this.allUsers.edges.find(el => el.node.username === this.$route.params.username)
+    username () {
+      return this.$route.params.username
+    },
+    userData () {
+      return this.$store.getters.getUserData(this.username)
     }
   }
 }

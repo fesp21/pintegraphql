@@ -1,17 +1,15 @@
 <template>
   <div id="home">
     <div id="card-block" class="md-display-3">
-      <template v-for="user in allUsers.edges">
-        <template v-for="image in user.node.uploadedImages.edges">
-          <image-card
-          :username="user.node.username"
-          :profilePicture="user.node.profilePicture"
-          :imageUrl="image.node.url"
-          :imageDescription="image.node.description"
-          :likeNumber="image.node.likedBy.edges.length"
-          >
-          </image-card>
-        </template>
+      <template v-for="image in allImages">
+        <image-card
+        :username="image.user.username"
+        :profilePicture="image.user.profilePicture"
+        :imageUrl="image.url"
+        :imageDescription="image.description"
+        :likeNumber="image.likedBy.length"
+        >
+        </image-card>
       </template>
     </div>
   </div>
@@ -19,16 +17,13 @@
 
 <script>
 import ImageCard from '../components/ImageCard'
-import {allImages} from '../vuex/Root/getters'
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   components: {ImageCard},
   props: ['allUsers'],
-  vuex: {
-    getters: {
-      allImages
-    }
+  computed: {
+    ...mapGetters(['allImages'])
   }
 }
 </script>

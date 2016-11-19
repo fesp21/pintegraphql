@@ -1,6 +1,5 @@
-
-export const allImages = state => [].concat(
-  state.users.map(user =>
+export function allImages (state) {
+  return [].concat.apply([], state.users.map(user =>
     user.uploadedImages.map(image => ({
       ...image,
       user: {
@@ -8,4 +7,4 @@ export const allImages = state => [].concat(
         profilePicture: user.profilePicture
       }
     }))))
-
+}

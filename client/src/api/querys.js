@@ -1,6 +1,4 @@
-import gql from 'graphql-tag'
-
-export const allImagesQuery = gql`
+export const allImagesQuery = `
 {
   allImages {
     edges {
@@ -23,8 +21,8 @@ export const allImagesQuery = gql`
   }
 }
 `
-const allUsersQuery = gql`
-{
+const allUsersQuery = `
+query {
   allUsers {
     edges {
       node {

@@ -8,21 +8,17 @@
 </template>
 
 <script>
-import store from '../vuex/store'
 import Topbar from '../components/Topbar'
-import {allImages} from '../vuex/Root/getters'
-import {fetchData} from '../vuex/Root/actions'
+// import {allImages} from '../vuex/Root/getters'
+import { mapActions } from 'vuex'
 
 export default {
-  store,
   components: {Topbar},
   name: 'App',
-  created: fetchData
-  vuex: {
-    actions: {
-      fetchData
-    }
-  }
+  methods: {
+    ...mapActions(['fetchData'])
+  },
+  created () { this.fetchData() }
 }
 </script>
 
